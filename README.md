@@ -58,5 +58,45 @@ php command migrate
 [vc-notify-list-page]: List all notifies
 ```
 
-<!-- <a name="compiler"></a> -->
+##### Step 5: Save data to database
+> use Notify model to determine notification type, refer [Notify](https://github.com/garungabc/notification_with_paginate/blob/master/src/Models/Notify.php)
 
+```php
+NotificationManager::saveDataToDatabase($id_post, Notify::NOTIFIABLE_TYPE);
+```
+
+<a name="compiler"></a>
+### Send Email with Lumen-email-microservice
+> Send email easy
+
+##### Step 1: Prepare data, email template
+
+- Prepare data array with key is variables use to show into email template
+```php
+$data = [
+    'param_1' => title_case(get_the_author_meta('user_nicename', $post->post_author)),
+    'param_2'  => $post->post_title
+]
+```
+
+
+- Get html content from email template file
+```php	
+
+$email_template = '<div class="this_is_1">{$param_1}</div><div class="this_is_2">{$param_2}</div>';
+
+or
+
+$email_template = file_get_contents(PATH_TO_EMAIL_TEMPLATE_FILE);
+```
+##### Step 2: Send email
+
+- Send bulk email
+```php
+NotificationManager::sendBulkEmail($id_post, $data, $from, $subject = "This is email subject", $email_template);
+```
+
+- Send email
+```php
+NotificationManager::sendEmail($data, $to, $from, $subject = "Default", $email_template);
+```
