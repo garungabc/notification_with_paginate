@@ -1,16 +1,5 @@
-# Extension Kit
+# Notification with popup and send email
  > It's an extension kit for our theme https://github.com/hieu-pv/nf-theme 
- 
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Compile asset file](#compiler)
-- [Service](#service)
-- [Working with local repository](#local-reposoitory)
-- [Extension Configuration](#extension-configuration)
-
- 
-<a name="installation"></a>
-#### Installation
 
 <a name="local-reposoitory"></a>
 ## Add notifications folder in your theme
@@ -19,12 +8,12 @@
 ## Working with local repository
 To add namespace of package with PSR-4, add the following code to your composer.json then run command `composer dump-autoload` or `composer dump-autoload -o` to optimize
 
-```
-    "autoload": {
-        "psr-4": {
-            "Vicoders\\Notification\\": "notifications/src/"
-        }
-    },
+```php
+"autoload": {
+    "psr-4": {
+        "Vicoders\\Notification\\": "notifications/src/"
+    }
+},
 ```
 
 ##### Step 1: Install Through Composer
@@ -44,7 +33,7 @@ Updating ...
 ```
 
 ##### Step 3: Run migrate
-> Run below command to migrate tables into database. It'll create 2 tables `wp_notify` and `wp_user_notify`.
+> Run below command to migrate tables into database. It'll create 2 tables is `wp_notify` and `wp_user_notify`.
 
 ```php
 php command migrate
