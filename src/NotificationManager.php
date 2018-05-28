@@ -120,11 +120,9 @@ class NotificationManager
         if (!$signals->isEmpty()) {
             $users = [];
             foreach ($signals as $key => $item) {
-                $users = [
-                    $item->signer_id => [
-                        'name_signer' => title_case(get_the_author_meta('user_nicename', $item->signer_id)),
-                        'email'       => get_the_author_meta('user_email', $item->signer_id),
-                    ],
+                $users[$item->signer_id] = [
+                    'name_signer' => title_case(get_the_author_meta('user_nicename', $item->signer_id)),
+                    'email'       => get_the_author_meta('user_email', $item->signer_id)
                 ];
             }
             $request = [
